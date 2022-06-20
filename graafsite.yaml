@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: graafschap-frontend
+  labels:
+    app: graafschap-frontend
+    tier: graafschap-frontend
+spec:
+  # modify replicas according to your case
+  replicas: 3
+  selector:
+    matchLabels:
+      tier: graafschap-frontend
+  template:
+    metadata:
+      labels:
+        app: graafschap-frontend
+        tier: graafschap-frontend
+    spec:
+      containers:
+      - name: graafschap-frontend
+        image: defjef/graafschap:test
+        ports:
+        - containerPort: 80
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: graafschap-service
+spec:
+  selector:
+    app: graafschap-frontend
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
