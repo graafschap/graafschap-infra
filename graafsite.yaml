@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: ReplicaSet
+kind: Deployment
 metadata:
   name: graafschap-frontend
   labels:
@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: graafschap-frontend
-        image: defjef/graafschap:test
+        image: defjef/graafschap:latest
         ports:
         - containerPort: 80
 
