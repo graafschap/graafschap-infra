@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: graafschap-frontend
+  name: graafschap-www
   labels:
-    app: graafschap-frontend
-    tier: graafschap-frontend
+    app: graafschap-www
+    tier: graafschap-www
 spec:
   # modify replicas according to your case
   replicas: 3
   selector:
     matchLabels:
-      tier: graafschap-frontend
+      tier: graafschap-www
   template:
     metadata:
       labels:
-        app: graafschap-frontend
-        tier: graafschap-frontend
+        app: graafschap-www
+        tier: graafschap-www
     spec:
       containers:
       - name: graafschap-frontend
@@ -28,10 +28,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: graafschap-service
+  name: graafschap-www-service
 spec:
   selector:
-    app: graafschap-frontend
+    app: graafschap-www
   ports:
     - name: http
       port: 80
