@@ -5,7 +5,15 @@ metadata:
   annotations:
     # use the shared ingress-nginx
     kubernetes.io/ingress.class: "nginx"
+    kubernetes.io/tls-acme: "true"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    acme.cert-manager.io/http01-edit-in-place: "true"
 spec:
+  tls:
+  - hosts:
+    - www.corsograafschap.nl
+    secretName: graafschap-prod-tls
   rules:
   - host: graafschap.defjef.nl
     http:
@@ -24,6 +32,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-           name: graafschap-service
+           name: graafschap-www-service
            port: 
             number: 80
